@@ -1,0 +1,23 @@
+.array-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.array-bar {
+  width: 3px;
+  background-color: cadetblue;
+  margin: 0px 1px;
+}
+
+.panel {
+  margin: 4% 30%;
+  border: 1px solid green;
+  padding: 1%;
+}
+
+@media screen and (max-width: 1024px) {
+  .panel {
+    margin: 4% 3%;
+  }
+}
