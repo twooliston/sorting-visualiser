@@ -121,23 +121,6 @@ export class SortingVisualiser extends React.Component {
         }
     }
 
-    TestSorts(array) {
-        const jsSorted = array.slice().sort((a, b) => a - b);
-        const mergeSorted = this.MergeSort(array);
-        
-        if (jsSorted.length === mergeSorted.length) {
-            for (let i = 0; i < jsSorted.length; i++) {
-                if (jsSorted[i] !== mergeSorted[i]) {
-                    console.log(false);
-                }
-            }
-            console.log(true);
-
-        } else {
-            console.log(false);
-        }
-    }
-
     render() {
         const {array, maxHeight} = this.state;
 
@@ -153,10 +136,9 @@ export class SortingVisualiser extends React.Component {
                 <div className="buttons">
                     <button onClick={() => this.resetArray()}> Generate New Values</button>
                     <button onClick={() => this.MergeSort(array)}> Merge Sort</button>
-                    <button onClick={() => this.QuickSort(array)}> QuickSort</button>
-                    <button onClick={() => this.HeapSort(array)}> Heap Sort</button>
+                    {/* <button onClick={() => this.QuickSort(array)}> QuickSort</button> */}
+                    {/* <button onClick={() => this.HeapSort(array)}> Heap Sort</button> */}
                     <button onClick={() => this.BubbleSort(array)}>Bubble Sort</button>
-                    <button onClick={() => this.TestSorts(array)}> Test Sorts</button>
                 </div>
             </div>
         );
