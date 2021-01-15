@@ -1,3 +1,7 @@
+.page {
+  margin: 4% 30%;
+}
+
 .array-container {
   display: flex;
   justify-content: center;
@@ -11,13 +15,30 @@
 }
 
 .panel {
-  margin: 4% 30%;
   border: 1px solid green;
   padding: 1%;
 }
 
+.buttons {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px 0;
+}
+
+button {
+  font-family: inherit;
+  padding: 15px 25px;
+  background-color: transparent;
+  border: 1px solid;
+}
+
+button:hover {
+  background-color: rgba(95, 158, 160, 0.2);
+}
+
 @media screen and (max-width: 1024px) {
-  .panel {
+  .page {
     margin: 4% 3%;
   }
 }
