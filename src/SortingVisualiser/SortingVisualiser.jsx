@@ -4,19 +4,21 @@ import * as MergeAlgorithm from '../SortingAlgos/mergeAlgorithm.js'
 import * as BubbleAlgorithm from '../SortingAlgos/bubbleAlgorithm.js'
 import * as QuickAlgorithm from '../SortingAlgos/quickAlgorithm.js'
 
-//test
-// import {getMergeSortAnimations} from '../SortingAlgos/testAlgorithms.js';
-
 const windowWidth = window.innerWidth;
 const maxHeight = window.innerHeight/2;
 
 const mobilePadding = 4/100;
 const pcPadding = 31/100;
 
+// TODO: update view on window size change
+// TODO: add interrupts
+// TODO: improve sorts to use same animation function 
+
 export class SortingVisualiser extends React.Component {
     constructor(props) {
         super(props);
 
+        // needs the state to merge the updates
         this.state = {
             array: [],
             windowWidth,
@@ -24,11 +26,13 @@ export class SortingVisualiser extends React.Component {
         };
     }
 
+    // initialisation
     componentDidMount() {
         this.resetArray();
     }
 
     resetArray() {
+        // monitor window has changes
         const windowWidth = window.innerWidth;
         const maxHeight = window.innerHeight/2;
 
@@ -37,15 +41,17 @@ export class SortingVisualiser extends React.Component {
 
         // get number of bars that can fit in the panel
         if (windowWidth > 1024) {
-            numberOfBars = Math.trunc(windowWidth*(1 - (pcPadding*2))/5);
+            numberOfBars = Math.trunc(windowWidth*(1 - (pcPadding*2))/5); // padding is in % therefore need (1 - 2*Padding)
         } else {
             numberOfBars = Math.trunc(windowWidth*(1 - (mobilePadding*2))/5);
         }
 
+        // generate bars
         for (let i = 0; i < numberOfBars; i++) {
             // chosen 10 as minimum to make the value visable on the interface
-            array.push(randomIntegerFromInterval(10, maxHeight));
+            array.push(randomIntegerFromInterval(10, maxHeight)); // based on max height allowed
         }
+        // update state so that changes are visible
         this.setState({array, windowWidth, maxHeight});
         
         // reset colour
@@ -100,11 +106,6 @@ export class SortingVisualiser extends React.Component {
         }
     }
 
-    InsertionSort(array) {
-        // const animationArray = InsertionAlgorithm.getInsertionSortAnimations(array);
-        // this.animateSort(animationArray);
-    }
-
     // use when data set is almost sorted (or small data sets)
     BubbleSort(array) {
         const animationArray = BubbleAlgorithm.getBubbleSortAnimations(array);
@@ -127,6 +128,7 @@ export class SortingVisualiser extends React.Component {
         }
     }
 
+    // used for all sorts -- highlights the bars which are currently being compared
     compareAnimation(value, i, arrayBars) {
         const [firstIndex, secondIndex] = value;
         const firstStyle = arrayBars[firstIndex].style;
@@ -154,7 +156,6 @@ export class SortingVisualiser extends React.Component {
                     <button onClick={() => this.resetArray()}> Generate New Values</button>
                     <button onClick={() => this.MergeSort(array)}> Merge Sort</button>
                     <button onClick={() => this.QuickSort(array)}> QuickSort</button>
-                    {/* <button onClick={() => this.HeapSort(array)}> Heap Sort</button> */}
                     <button onClick={() => this.BubbleSort(array)}>Bubble Sort</button>
                 </div>
             </div>
@@ -162,6 +163,7 @@ export class SortingVisualiser extends React.Component {
     }
 }
 
+// random number generator
 function randomIntegerFromInterval(min, max) {
     return Math.floor(Math.random() * max - min + 1) + min;
 }

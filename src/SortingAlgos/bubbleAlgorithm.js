@@ -16,7 +16,7 @@ function bubbleSort(mainArray, endIndex, animationArray) {
     notSorted = false;
     for (let i = 0; i < len - 1; i++) {
       compareAnimation(animationArray, i, i + 1);
-      animationArray.push([i, mainArray[i], i + 1, mainArray[i + 1]]);
+      animationArray.push([i, mainArray[i], i + 1, mainArray[i + 1]]); // to avoid rerendering each time, the comparison for animation is done in main
       if (mainArray[i] > mainArray[i + 1]) {
         temp = mainArray[i];
         mainArray[i] = mainArray[i + 1];

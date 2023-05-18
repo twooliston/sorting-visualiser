@@ -4,7 +4,6 @@ export function getQuickSortAnimations(array) {
 
   const animationArray = [];
   quickSort(array, animationArray);
-  // sortedArray.filter((value) => value !== undefined);
   return animationArray;
 }
 
